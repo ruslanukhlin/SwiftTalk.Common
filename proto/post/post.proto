@@ -36,9 +36,7 @@ message GetPostRequest {
 }
 
 message GetPostResponse {
-    string id = 1;
-    string title = 2;
-    string content = 3;
+    Post post = 1;
 }
 
 message UpdatePostRequest {

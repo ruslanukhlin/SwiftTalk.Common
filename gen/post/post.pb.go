@@ -23,7 +23,7 @@ const (
 
 type Post struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
 	Content       string                 `protobuf:"bytes,3,opt,name=content,proto3" json:"content,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -60,9 +60,9 @@ func (*Post) Descriptor() ([]byte, []int) {
 	return file_post_post_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Post) GetId() string {
+func (x *Post) GetUuid() string {
 	if x != nil {
-		return x.Id
+		return x.Uuid
 	}
 	return ""
 }
@@ -251,7 +251,7 @@ func (x *GetPostsResponse) GetPosts() []*Post {
 
 type GetPostRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -286,18 +286,16 @@ func (*GetPostRequest) Descriptor() ([]byte, []int) {
 	return file_post_post_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *GetPostRequest) GetId() string {
+func (x *GetPostRequest) GetUuid() string {
 	if x != nil {
-		return x.Id
+		return x.Uuid
 	}
 	return ""
 }
 
 type GetPostResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
-	Content       string                 `protobuf:"bytes,3,opt,name=content,proto3" json:"content,omitempty"`
+	Post          *Post                  `protobuf:"bytes,1,opt,name=post,proto3" json:"post,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -332,30 +330,16 @@ func (*GetPostResponse) Descriptor() ([]byte, []int) {
 	return file_post_post_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *GetPostResponse) GetId() string {
+func (x *GetPostResponse) GetPost() *Post {
 	if x != nil {
-		return x.Id
+		return x.Post
 	}
-	return ""
-}
-
-func (x *GetPostResponse) GetTitle() string {
-	if x != nil {
-		return x.Title
-	}
-	return ""
-}
-
-func (x *GetPostResponse) GetContent() string {
-	if x != nil {
-		return x.Content
-	}
-	return ""
+	return nil
 }
 
 type UpdatePostRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
 	Content       string                 `protobuf:"bytes,3,opt,name=content,proto3" json:"content,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -392,9 +376,9 @@ func (*UpdatePostRequest) Descriptor() ([]byte, []int) {
 	return file_post_post_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *UpdatePostRequest) GetId() string {
+func (x *UpdatePostRequest) GetUuid() string {
 	if x != nil {
-		return x.Id
+		return x.Uuid
 	}
 	return ""
 }
@@ -451,7 +435,7 @@ func (*UpdatePostResponse) Descriptor() ([]byte, []int) {
 
 type DeletePostRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -486,9 +470,9 @@ func (*DeletePostRequest) Descriptor() ([]byte, []int) {
 	return file_post_post_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *DeletePostRequest) GetId() string {
+func (x *DeletePostRequest) GetUuid() string {
 	if x != nil {
-		return x.Id
+		return x.Uuid
 	}
 	return ""
 }
@@ -533,9 +517,9 @@ var File_post_post_proto protoreflect.FileDescriptor
 
 const file_post_post_proto_rawDesc = "" +
 	"\n" +
-	"\x0fpost/post.proto\x12\x04post\"F\n" +
-	"\x04Post\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
+	"\x0fpost/post.proto\x12\x04post\"J\n" +
+	"\x04Post\x12\x12\n" +
+	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x18\n" +
 	"\acontent\x18\x03 \x01(\tR\acontent\"C\n" +
 	"\x11CreatePostRequest\x12\x14\n" +
@@ -545,20 +529,19 @@ const file_post_post_proto_rawDesc = "" +
 	"\x0fGetPostsRequest\"4\n" +
 	"\x10GetPostsResponse\x12 \n" +
 	"\x05posts\x18\x01 \x03(\v2\n" +
-	".post.PostR\x05posts\" \n" +
-	"\x0eGetPostRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"Q\n" +
-	"\x0fGetPostResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
-	"\x05title\x18\x02 \x01(\tR\x05title\x12\x18\n" +
-	"\acontent\x18\x03 \x01(\tR\acontent\"S\n" +
-	"\x11UpdatePostRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
+	".post.PostR\x05posts\"$\n" +
+	"\x0eGetPostRequest\x12\x12\n" +
+	"\x04uuid\x18\x01 \x01(\tR\x04uuid\"1\n" +
+	"\x0fGetPostResponse\x12\x1e\n" +
+	"\x04post\x18\x01 \x01(\v2\n" +
+	".post.PostR\x04post\"W\n" +
+	"\x11UpdatePostRequest\x12\x12\n" +
+	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x18\n" +
 	"\acontent\x18\x03 \x01(\tR\acontent\"\x14\n" +
-	"\x12UpdatePostResponse\"#\n" +
-	"\x11DeletePostRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\x14\n" +
+	"\x12UpdatePostResponse\"'\n" +
+	"\x11DeletePostRequest\x12\x12\n" +
+	"\x04uuid\x18\x01 \x01(\tR\x04uuid\"\x14\n" +
 	"\x12DeletePostResponse2\xc3\x02\n" +
 	"\vPostService\x12?\n" +
 	"\n" +
@@ -598,21 +581,22 @@ var file_post_post_proto_goTypes = []any{
 }
 var file_post_post_proto_depIdxs = []int32{
 	0,  // 0: post.GetPostsResponse.posts:type_name -> post.Post
-	1,  // 1: post.PostService.CreatePost:input_type -> post.CreatePostRequest
-	3,  // 2: post.PostService.GetPosts:input_type -> post.GetPostsRequest
-	5,  // 3: post.PostService.GetPost:input_type -> post.GetPostRequest
-	7,  // 4: post.PostService.UpdatePost:input_type -> post.UpdatePostRequest
-	9,  // 5: post.PostService.DeletePost:input_type -> post.DeletePostRequest
-	2,  // 6: post.PostService.CreatePost:output_type -> post.CreatePostResponse
-	4,  // 7: post.PostService.GetPosts:output_type -> post.GetPostsResponse
-	6,  // 8: post.PostService.GetPost:output_type -> post.GetPostResponse
-	8,  // 9: post.PostService.UpdatePost:output_type -> post.UpdatePostResponse
-	10, // 10: post.PostService.DeletePost:output_type -> post.DeletePostResponse
-	6,  // [6:11] is the sub-list for method output_type
-	1,  // [1:6] is the sub-list for method input_type
-	1,  // [1:1] is the sub-list for extension type_name
-	1,  // [1:1] is the sub-list for extension extendee
-	0,  // [0:1] is the sub-list for field type_name
+	0,  // 1: post.GetPostResponse.post:type_name -> post.Post
+	1,  // 2: post.PostService.CreatePost:input_type -> post.CreatePostRequest
+	3,  // 3: post.PostService.GetPosts:input_type -> post.GetPostsRequest
+	5,  // 4: post.PostService.GetPost:input_type -> post.GetPostRequest
+	7,  // 5: post.PostService.UpdatePost:input_type -> post.UpdatePostRequest
+	9,  // 6: post.PostService.DeletePost:input_type -> post.DeletePostRequest
+	2,  // 7: post.PostService.CreatePost:output_type -> post.CreatePostResponse
+	4,  // 8: post.PostService.GetPosts:output_type -> post.GetPostsResponse
+	6,  // 9: post.PostService.GetPost:output_type -> post.GetPostResponse
+	8,  // 10: post.PostService.UpdatePost:output_type -> post.UpdatePostResponse
+	10, // 11: post.PostService.DeletePost:output_type -> post.DeletePostResponse
+	7,  // [7:12] is the sub-list for method output_type
+	2,  // [2:7] is the sub-list for method input_type
+	2,  // [2:2] is the sub-list for extension type_name
+	2,  // [2:2] is the sub-list for extension extendee
+	0,  // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_post_post_proto_init() }
