@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package post;
+
+option go_package = "github.com/ruslanukhlin/SwiftTalk.common/protos/post";
+
+message Post {
+    string uuid = 1;
+    string title = 2;
+    string content = 3;
+}
+
+service PostService {
+    rpc CreatePost(CreatePostRequest) returns (CreatePostResponse);
+    rpc GetPosts(GetPostsRequest) returns (GetPostsResponse);
+    rpc GetPost(GetPostRequest) returns (GetPostResponse);
+    rpc UpdatePost(UpdatePostRequest) returns (UpdatePostResponse);
+    rpc DeletePost(DeletePostRequest) returns (DeletePostResponse);
+}
+
+message CreatePostRequest {
+    string title = 1;
+    string content = 2;
+}
+
+message CreatePostResponse {}
+
+message GetPostsRequest {}
+
+message GetPostsResponse {
+    repeated Post posts = 1;
+}
+
+message GetPostRequest {
+    string uuid = 1;
+}
+
+message GetPostResponse {
+    string id = 1;
+    string title = 2;
+    string content = 3;
+}
+
+message UpdatePostRequest {
+    string uuid = 1;
+    string title = 2;
+    string content = 3;
+}
+
+message UpdatePostResponse {}
+
+message DeletePostRequest {
+    string uuid = 1;
+}
+
+message DeletePostResponse {}
