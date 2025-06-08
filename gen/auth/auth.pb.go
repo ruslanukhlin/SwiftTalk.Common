@@ -276,7 +276,7 @@ func (x *VerifyTokenRequest) GetAccessToken() string {
 type VerifyTokenResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	IsValid       bool                   `protobuf:"varint,1,opt,name=is_valid,json=isValid,proto3" json:"is_valid,omitempty"`
-	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserUuid      string                 `protobuf:"bytes,2,opt,name=user_uuid,json=userUuid,proto3" json:"user_uuid,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -318,9 +318,9 @@ func (x *VerifyTokenResponse) GetIsValid() bool {
 	return false
 }
 
-func (x *VerifyTokenResponse) GetUserId() string {
+func (x *VerifyTokenResponse) GetUserUuid() string {
 	if x != nil {
-		return x.UserId
+		return x.UserUuid
 	}
 	return ""
 }
@@ -439,10 +439,10 @@ const file_auth_auth_proto_rawDesc = "" +
 	"\faccess_token\x18\x01 \x01(\tR\vaccessToken\x12#\n" +
 	"\rrefresh_token\x18\x02 \x01(\tR\frefreshToken\"7\n" +
 	"\x12VerifyTokenRequest\x12!\n" +
-	"\faccess_token\x18\x01 \x01(\tR\vaccessToken\"I\n" +
+	"\faccess_token\x18\x01 \x01(\tR\vaccessToken\"M\n" +
 	"\x13VerifyTokenResponse\x12\x19\n" +
-	"\bis_valid\x18\x01 \x01(\bR\aisValid\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\tR\x06userId\":\n" +
+	"\bis_valid\x18\x01 \x01(\bR\aisValid\x12\x1b\n" +
+	"\tuser_uuid\x18\x02 \x01(\tR\buserUuid\":\n" +
 	"\x13RefreshTokenRequest\x12#\n" +
 	"\rrefresh_token\x18\x01 \x01(\tR\frefreshToken\"^\n" +
 	"\x14RefreshTokenResponse\x12!\n" +
