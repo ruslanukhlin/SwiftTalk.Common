@@ -26,6 +26,7 @@ type Post struct {
 	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
 	Content       string                 `protobuf:"bytes,3,opt,name=content,proto3" json:"content,omitempty"`
+	Images        []string               `protobuf:"bytes,4,rep,name=images,proto3" json:"images,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -81,10 +82,18 @@ func (x *Post) GetContent() string {
 	return ""
 }
 
+func (x *Post) GetImages() []string {
+	if x != nil {
+		return x.Images
+	}
+	return nil
+}
+
 type CreatePostRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Title         string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
 	Content       string                 `protobuf:"bytes,2,opt,name=content,proto3" json:"content,omitempty"`
+	Images        [][]byte               `protobuf:"bytes,3,rep,name=images,proto3" json:"images,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -131,6 +140,13 @@ func (x *CreatePostRequest) GetContent() string {
 		return x.Content
 	}
 	return ""
+}
+
+func (x *CreatePostRequest) GetImages() [][]byte {
+	if x != nil {
+		return x.Images
+	}
+	return nil
 }
 
 type CreatePostResponse struct {
@@ -342,6 +358,7 @@ type UpdatePostRequest struct {
 	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
 	Content       string                 `protobuf:"bytes,3,opt,name=content,proto3" json:"content,omitempty"`
+	Images        [][]byte               `protobuf:"bytes,4,rep,name=images,proto3" json:"images,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -395,6 +412,13 @@ func (x *UpdatePostRequest) GetContent() string {
 		return x.Content
 	}
 	return ""
+}
+
+func (x *UpdatePostRequest) GetImages() [][]byte {
+	if x != nil {
+		return x.Images
+	}
+	return nil
 }
 
 type UpdatePostResponse struct {
@@ -517,14 +541,16 @@ var File_post_post_proto protoreflect.FileDescriptor
 
 const file_post_post_proto_rawDesc = "" +
 	"\n" +
-	"\x0fpost/post.proto\x12\x04post\"J\n" +
+	"\x0fpost/post.proto\x12\x04post\"b\n" +
 	"\x04Post\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x18\n" +
-	"\acontent\x18\x03 \x01(\tR\acontent\"C\n" +
+	"\acontent\x18\x03 \x01(\tR\acontent\x12\x16\n" +
+	"\x06images\x18\x04 \x03(\tR\x06images\"[\n" +
 	"\x11CreatePostRequest\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12\x18\n" +
-	"\acontent\x18\x02 \x01(\tR\acontent\"\x14\n" +
+	"\acontent\x18\x02 \x01(\tR\acontent\x12\x16\n" +
+	"\x06images\x18\x03 \x03(\fR\x06images\"\x14\n" +
 	"\x12CreatePostResponse\"\x11\n" +
 	"\x0fGetPostsRequest\"4\n" +
 	"\x10GetPostsResponse\x12 \n" +
@@ -534,11 +560,12 @@ const file_post_post_proto_rawDesc = "" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\"1\n" +
 	"\x0fGetPostResponse\x12\x1e\n" +
 	"\x04post\x18\x01 \x01(\v2\n" +
-	".post.PostR\x04post\"W\n" +
+	".post.PostR\x04post\"o\n" +
 	"\x11UpdatePostRequest\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x18\n" +
-	"\acontent\x18\x03 \x01(\tR\acontent\"\x14\n" +
+	"\acontent\x18\x03 \x01(\tR\acontent\x12\x16\n" +
+	"\x06images\x18\x04 \x03(\fR\x06images\"\x14\n" +
 	"\x12UpdatePostResponse\"'\n" +
 	"\x11DeletePostRequest\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\"\x14\n" +
