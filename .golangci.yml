@@ -1,0 +1,25 @@
+version: "2"
+
+run:
+  timeout: 5m
+  tests: true
+  build-tags: []
+
+linters:
+  enable:
+    - errcheck
+    - govet
+    - ineffassign
+    - staticcheck
+    - unused
+    - gosec
+    - gocritic
+    - prealloc
+    - unconvert
+    - unparam
+    - misspell
+
+formatters:
+  enable:
+    - gofmt
+    - goimports
