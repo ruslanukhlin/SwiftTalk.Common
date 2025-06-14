@@ -4,11 +4,16 @@ package post;
 
 option go_package = "github.com/ruslanukhlin/SwiftTalk.common/protos/post";
 
+message Image {
+    string uuid = 1;
+    string url = 2;
+}
+
 message Post {
     string uuid = 1;
     string title = 2;
     string content = 3;
-    repeated string images = 4;
+    repeated Image images = 4;
 }
 
 service PostService {
@@ -27,10 +32,16 @@ message CreatePostRequest {
 
 message CreatePostResponse {}
 
-message GetPostsRequest {}
+message GetPostsRequest {
+    int64 page = 1;
+    int64 limit = 2;
+}
 
 message GetPostsResponse {
     repeated Post posts = 1;
+    int64 total = 2;
+    int64 page = 3;
+    int64 limit = 4;
 }
 
 message GetPostRequest {
@@ -46,6 +57,7 @@ message UpdatePostRequest {
     string title = 2;
     string content = 3;
     repeated bytes images = 4;
+    repeated string deletedImages = 5;
 }
 
 message UpdatePostResponse {}
