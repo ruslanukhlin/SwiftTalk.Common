@@ -76,9 +76,10 @@ func (x *Image) GetUrl() string {
 type Post struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
-	Content       string                 `protobuf:"bytes,3,opt,name=content,proto3" json:"content,omitempty"`
-	Images        []*Image               `protobuf:"bytes,4,rep,name=images,proto3" json:"images,omitempty"`
+	UserUuid      string                 `protobuf:"bytes,2,opt,name=user_uuid,json=userUuid,proto3" json:"user_uuid,omitempty"`
+	Title         string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
+	Content       string                 `protobuf:"bytes,4,opt,name=content,proto3" json:"content,omitempty"`
+	Images        []*Image               `protobuf:"bytes,5,rep,name=images,proto3" json:"images,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -116,6 +117,13 @@ func (*Post) Descriptor() ([]byte, []int) {
 func (x *Post) GetUuid() string {
 	if x != nil {
 		return x.Uuid
+	}
+	return ""
+}
+
+func (x *Post) GetUserUuid() string {
+	if x != nil {
+		return x.UserUuid
 	}
 	return ""
 }
@@ -644,12 +652,13 @@ const file_post_post_proto_rawDesc = "" +
 	"\x0fpost/post.proto\x12\x04post\"-\n" +
 	"\x05Image\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x10\n" +
-	"\x03url\x18\x02 \x01(\tR\x03url\"o\n" +
+	"\x03url\x18\x02 \x01(\tR\x03url\"\x8c\x01\n" +
 	"\x04Post\x12\x12\n" +
-	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x14\n" +
-	"\x05title\x18\x02 \x01(\tR\x05title\x12\x18\n" +
-	"\acontent\x18\x03 \x01(\tR\acontent\x12#\n" +
-	"\x06images\x18\x04 \x03(\v2\v.post.ImageR\x06images\"[\n" +
+	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x1b\n" +
+	"\tuser_uuid\x18\x02 \x01(\tR\buserUuid\x12\x14\n" +
+	"\x05title\x18\x03 \x01(\tR\x05title\x12\x18\n" +
+	"\acontent\x18\x04 \x01(\tR\acontent\x12#\n" +
+	"\x06images\x18\x05 \x03(\v2\v.post.ImageR\x06images\"[\n" +
 	"\x11CreatePostRequest\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12\x18\n" +
 	"\acontent\x18\x02 \x01(\tR\acontent\x12\x16\n" +

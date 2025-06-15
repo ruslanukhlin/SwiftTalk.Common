@@ -11,9 +11,10 @@ message Image {
 
 message Post {
     string uuid = 1;
-    string title = 2;
-    string content = 3;
-    repeated Image images = 4;
+    string user_uuid = 2;
+    string title = 3;
+    string content = 4;
+    repeated Image images = 5;
 }
 
 service PostService {
