@@ -23,7 +23,8 @@ message LoginResponse {
 
 message RegisterRequest {
     string email = 1;
-    string password = 2;
+    string username = 2;
+    string password = 3;
 }
 
 message RegisterResponse {
@@ -38,6 +39,8 @@ message VerifyTokenRequest {
 message VerifyTokenResponse {
     bool is_valid = 1;
     string user_uuid = 2;
+    string username = 3;
+    string email = 4;
 }
 
 message RefreshTokenRequest {
