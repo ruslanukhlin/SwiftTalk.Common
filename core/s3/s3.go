@@ -3,11 +3,10 @@ package s3
 
 import (
 	"context"
-	"crypto/sha256"
-	"encoding/hex"
 	"errors"
 	"fmt"
 	"io"
+	"log"
 	"mime"
 	"path/filepath"
 	"sync"
@@ -31,10 +30,15 @@ type S3 struct {
 // ctx - контекст
 // bucket - имя корзины S3
 func NewS3(ctx context.Context, bucket string) (*S3, error) {
+	log.Printf("Создание S3 клиента для bucket: %s", bucket)
+
 	cfg, err := config.LoadDefaultConfig(ctx)
 	if err != nil {
+		log.Printf("Ошибка загрузки конфигурации AWS: %v", err)
 		return nil, err
 	}
+
+	log.Printf("AWS конфигурация загружена успешно. Region: %s", cfg.Region)
 
 	return &S3{
 		Client: s3.NewFromConfig(cfg),
@@ -48,16 +52,13 @@ func NewS3(ctx context.Context, bucket string) (*S3, error) {
 // key - ключ файла
 // bucket - имя корзины S3
 func (s *S3) UploadFile(ctx context.Context, file io.Reader, key string) error {
-	harsher := sha256.New()
-	sha256Hash := hex.EncodeToString(harsher.Sum(nil)) // Конвертируем хеш в строку
 	contentType := getContentType(key)
 
 	_, err := s.Client.PutObject(ctx, &s3.PutObjectInput{
-		Bucket:         aws.String(s.Bucket),
-		Key:            aws.String(key),
-		Body:           file,
-		ContentType:    aws.String(contentType),
-		ChecksumSHA256: aws.String(sha256Hash),
+		Bucket:      aws.String(s.Bucket),
+		Key:         aws.String(key),
+		Body:        file,
+		ContentType: aws.String(contentType),
 	})
 
 	return err
