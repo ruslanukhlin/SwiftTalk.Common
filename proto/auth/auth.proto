@@ -32,9 +32,7 @@ message RegisterResponse {
     string refresh_token = 2;
 }
 
-message VerifyTokenRequest {
-    string access_token = 1;
-}
+message VerifyTokenRequest {}
 
 message VerifyTokenResponse {
     bool is_valid = 1;
@@ -43,9 +41,7 @@ message VerifyTokenResponse {
     string email = 4;
 }
 
-message RefreshTokenRequest {
-    string refresh_token = 1;
-}
+message RefreshTokenRequest {}
 
 message RefreshTokenResponse {
     string access_token = 1;
